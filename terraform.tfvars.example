@@ -1,0 +1,33 @@
+# =============================================================================
+# terraform.tfvars  —  Override defaults for your environment
+# Copy this file and edit before running `terraform apply`
+# =============================================================================
+
+aws_region   = "us-east-1"
+project_name = "infra-poc"
+environment  = "poc"
+
+# ── Networking ────────────────────────────────────────────────────────────────
+vpc_cidr                  = "10.0.0.0/16"
+public_subnet_cidrs       = ["10.0.1.0/24", "10.0.2.0/24"]
+private_app_subnet_cidrs  = ["10.0.11.0/24", "10.0.12.0/24"]
+private_misc_subnet_cidrs = ["10.0.21.0/24", "10.0.22.0/24"]
+private_db_subnet_cidrs   = ["10.0.31.0/24", "10.0.32.0/24"]
+
+# ── Compute ───────────────────────────────────────────────────────────────────
+nginx_instance_type = "t3.small"
+misc_instance_type  = "t3.small"
+nginx_server_count  = 6
+misc_server_count   = 3
+
+# IMPORTANT: Replace with the name of your actual EC2 Key Pair in the region
+key_pair_name = "poc-keypair"
+
+# ── Database ──────────────────────────────────────────────────────────────────
+db_engine         = "mysql"
+db_engine_version = "8.0"
+db_instance_class = "db.t3.medium"
+db_allocated_storage = 20
+db_name     = "appdb"
+db_username = "dbadmin"
+db_password = "Ch@ngeMe123!"  # Replace with a strong password or use Secrets Manager
